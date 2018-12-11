@@ -59,7 +59,6 @@ class App extends Component {
   calculateFaceLocation = (data) => {
     const clarifaiFaces = [];
     for (const region of data.outputs[0].data.regions) {
-      console.log(data);
       clarifaiFaces.push(region.region_info.bounding_box);
     }
     const image = document.getElementById('inputimage');
@@ -76,7 +75,6 @@ class App extends Component {
         }
       )
     }
-    console.log(boxes);
     return boxes;
   }
 
@@ -91,8 +89,20 @@ class App extends Component {
   onImageSubmit = () => {
     this.setState({imageUrl: this.state.input});
     app.models.predict(Clarifai.FACE_DETECT_MODEL, this.state.input)
-    .then(
-      (response) => this.displayFaceBoxes(this.calculateFaceLocation(response)))
+    .then((response) => {
+          fetch('http://localhost:3000/image', {
+            method: 'PUT',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+              id: this.state.user.id
+            })
+          })
+          .then(response => response.json())
+          .then(count => {
+            this.setState(Object.assign(this.state.user, { entries: count }))
+          })
+          this.displayFaceBoxes(this.calculateFaceLocation(response));
+        })
     .catch(err => console.log(err));
   }
 
