@@ -31,6 +31,8 @@ class Signin extends Component {
             if (user.id) {
                 this.props.loadUser(user);
                 this.props.onRouteChange('home');
+            } else {
+                alert('Login failed. Please check whether your email and password are inputted correctly. ');
             }
         })
     }

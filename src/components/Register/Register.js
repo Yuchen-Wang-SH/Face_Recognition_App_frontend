@@ -37,6 +37,8 @@ class Register extends Component {
             if (user.id) {
               this.props.loadUser(user)
               this.props.onRouteChange('home');
+            } else {
+                alert('Signin failed. Required field blank or email has already been signed up.');
             }
           })
       }
