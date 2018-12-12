@@ -64,12 +64,27 @@ class Register extends Component {
                     </div>
                     </fieldset>
                     <div className="">
-                    <input className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib" type="submit" value="Register" onClick={this.onSubmitSignIn}/>
+                    <button className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib" type="submit" value="Register" onClick={this.onSubmitSignIn}>Register</button>
                     </div>
                 </div>
             </main>
         </article>
         )
+    }
+
+    componentDidMount() {
+        const inputs = document.querySelectorAll('input');
+        inputs.forEach(input => {
+            input.addEventListener("keyup", function(event) {
+                // Cancel the default action, if needed
+                event.preventDefault();
+                // Number 13 is the "Enter" key on the keyboard
+                if (event.keyCode === 13) {
+                  // Trigger the button element with a click
+                  document.getElementsByTagName('button')[0].click();
+                }
+            })
+        })
     }
 }
 
