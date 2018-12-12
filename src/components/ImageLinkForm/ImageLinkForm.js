@@ -2,10 +2,6 @@ import React, { Component } from 'react';
 import './ImageLinkForm.css';
 
 class ImageLinkForm extends Component {
-    constructor(props) {
-        super(props);
-    }
-
     render() {
         const { onInputChange, onImageSubmit } = this.props;
         return (
