@@ -4,7 +4,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background: linear-gradient(89deg, #04C8DE 0%, #4b54ce 100%);
-  font-family: 'Courier New', Courier, monospace
+  font-family: 'Patua One', 'Courier New', Courier, monospace
 }
 
 code {
