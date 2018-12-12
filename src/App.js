@@ -9,11 +9,6 @@ import Register from './components/Register/Register';
 import './App.css';
 import 'tachyons';
 import Particles from 'react-particles-js';
-import Clarifai from 'clarifai';
-
-const app = new Clarifai.App({
-  apiKey: 'cff3c929d6af4a71887099dc8e032bf3'
- });
 
 const particlesOptions = {
   particles: {
@@ -90,7 +85,14 @@ class App extends Component {
 
   onImageSubmit = () => {
     this.setState({imageUrl: this.state.input});
-    app.models.predict(Clarifai.FACE_DETECT_MODEL, this.state.input)
+    fetch('http://localhost:3000/imageurl', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({
+        input: this.state.input
+      })
+    })
+    .then(response => response.json())
     .then(response => {
           console.log(response);
           const numFaceDetected = response.outputs[0].data.regions.length;
@@ -106,6 +108,7 @@ class App extends Component {
           .then(count => {
             this.setState(Object.assign(this.state.user, { entries: count }))
           })
+          .catch(console.log);
           this.displayFaceBoxes(this.calculateFaceLocation(response));
         })
     .catch(err => console.log(err));
