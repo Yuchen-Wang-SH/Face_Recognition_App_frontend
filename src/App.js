@@ -85,7 +85,7 @@ class App extends Component {
 
   onImageSubmit = () => {
     this.setState({imageUrl: this.state.input});
-    fetch('http://localhost:3000/imageurl', {
+    fetch('https://warm-woodland-86887.herokuapp.com/imageurl', {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({
@@ -96,7 +96,7 @@ class App extends Component {
     .then(response => {
           console.log(response);
           const numFaceDetected = response.outputs[0].data.regions.length;
-          fetch('http://localhost:3000/image', {
+          fetch('https://warm-woodland-86887.herokuapp.com/image', {
             method: 'PUT',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
