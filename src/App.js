@@ -84,7 +84,7 @@ class App extends Component {
   }
 
   onImageSubmit = () => {
-    this.setState({imageUrl: this.state.input});
+    this.setState({imageUrl: this.state.input, boxes: []});
     fetch('https://warm-woodland-86887.herokuapp.com/imageurl', {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
