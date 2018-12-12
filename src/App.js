@@ -89,12 +89,15 @@ class App extends Component {
   onImageSubmit = () => {
     this.setState({imageUrl: this.state.input});
     app.models.predict(Clarifai.FACE_DETECT_MODEL, this.state.input)
-    .then((response) => {
+    .then(response => {
+          console.log(response);
+          const numFaceDetected = response.outputs[0].data.regions.length;
           fetch('http://localhost:3000/image', {
             method: 'PUT',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
-              id: this.state.user.id
+              id: this.state.user.id,
+              numFaceDetected
             })
           })
           .then(response => response.json())
