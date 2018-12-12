@@ -94,7 +94,6 @@ class App extends Component {
     })
     .then(response => response.json())
     .then(response => {
-          console.log(response);
           const numFaceDetected = response.outputs[0].data.regions.length;
           fetch('https://warm-woodland-86887.herokuapp.com/image', {
             method: 'PUT',
