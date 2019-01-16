@@ -1,4 +1,4 @@
-# Face Recognition App: A React based Front end
+# Face Recognition App: A React based Front End
 
 https://image-recog-app-yuchenwang.herokuapp.com/
 
